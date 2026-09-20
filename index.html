@@ -1,128 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Earner Community - App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earner Community - App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="bg-slate-50 font-sans text-slate-800">
 
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">E</div>
-      <span class="text-xl font-bold text-blue-900">EARNER <span class="text-amber-500">COMMUNITY</span></span>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">E</div>
+            <span class="text-xl font-bold text-blue-900">EARNER COMMUNITY</span>
+        </div>
+        <button onclick="toggleView('login')" class="text-sm bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition">Login</button>
+    </nav>
+
+    <!-- Hero / Home Section -->
+    <section id="home" class="py-12 px-6 text-center max-w-2xl mx-auto">
+        <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Build Your Financial Freedom With Digital Skills</h1>
+        <p class="text-slate-600 mb-8">Join India's fastest growing community.</p>
+        <div class="flex flex-col gap-4">
+            <button onclick="toggleView('login')" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition">Get Started &rarr;</button>
+            <button class="border border-blue-600 text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition">How It Works &rarr;</button>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="hidden py-12 px-6 max-w-md mx-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-user-gear text-4xl text-blue-600 mb-2"></i>
+                <h2 class="text-2xl font-bold">LOGIN ACCOUNT</h2>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4 text-left">
+                    <label class="block text-sm font-medium mb-1">Email Address</label>
+                    <input type="email" required placeholder="name@example.com" class="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <div class="mb-6 text-left">
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- User Dashboard Section -->
+    <div id="dashboard" class="hidden min-h-screen bg-slate-100 pb-24">
+        <!-- Top Header -->
+        <div class="bg-white p-4 shadow flex justify-between items-center">
+            <h2 class="text-xl font-bold text-slate-700" id="page-title">DASHBOARD</h2>
+            <button onclick="toggleView('home')" class="text-sm text-red-500 font-semibold">Logout</button>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="tab-dashboard" class="tab-content p-4">
+            <!-- User Card -->
+            <div class="bg-gradient-to-r from-amber-300 to-yellow-400 p-6 rounded-2xl text-center shadow-lg mb-6">
+                <div class="w-20 h-20 bg-auto rounded-full overflow-hidden border-4 border-white mx-auto mb-2">
+                    <img src="https://via.placeholder.com/150" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">AYUSH 2605</h3>
+                <span class="inline-block bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-semibold mb-2">✓ Verified Member</span>
+                <p class="text-xs text-slate-800 font-medium">🚀 Powered by Zero Investment Platform</p>
+            </div>
+
+            <!-- Earnings Grid -->
+            <div class="grid grid-cols-1 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow border-l-4 border-blue-500">
+                    <p class="text-xs text-slate-500 font-semibold">Today's Earning</p>
+                    <p class="text-2xl font-bold text-slate-800">₹0</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow border-l-4 border-blue-500">
+                    <p class="text-xs text-slate-500 font-semibold">7 Days Earning</p>
+                    <p class="text-2xl font-bold text-slate-800">₹0</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow border-l-4 border-green-500">
+                    <p class="text-xs text-slate-500 font-semibold">All Time Earning</p>
+                    <p class="text-2xl font-bold text-blue-900">₹1,72,080</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Performers Content -->
+        <div id="tab-top-perf" class="tab-content hidden p-4">
+            <div class="bg-white p-4 rounded-xl shadow">
+                <h3 class="text-lg font-bold mb-4">Leaderboard</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-2 border-b">
+                        <span class="font-semibold">1. Rahul Sharma</span>
+                        <span class="text-green-600 font-bold">₹2,50,000</span>
+                    </div>
+                    <div class="flex justify-between items-center p-2 border-b">
+                        <span class="font-semibold">2. Ayush (You)</span>
+                        <span class="text-green-600 font-bold">₹1,72,080</span>
+                    </div>
+                    <div class="flex justify-between items-center p-2 border-b">
+                        <span class="font-semibold">3. Priya Verma</span>
+                        <span class="text-green-600 font-bold">₹1,20,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Content -->
+        <div id="tab-wallet" class="tab-content hidden p-4">
+            <div class="bg-white p-6 rounded-xl shadow text-center">
+                <i class="fa-solid fa-wallet text-4xl text-blue-600 mb-2"></i>
+                <h3 class="text-gray-500 text-sm">Available Balance</h3>
+                <p class="text-3xl font-bold text-slate-800 mb-4">₹1,72,080</p>
+                <button onclick="alert('Withdrawal request submitted!')" class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg shadow hover:bg-green-700 transition">
+                    Withdraw Money
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3 shadow-lg z-50">
+            <button onclick="switchTab('tab-dashboard', 'DASHBOARD')" class="flex flex-col items-center text-blue-600">
+                <i class="fa-solid fa-chart-pie text-xl"></i>
+                <span class="text-xs font-semibold">DASHBOARD</span>
+            </button>
+            <button onclick="switchTab('tab-top-perf', 'TOP PERFORMERS')" class="flex flex-col items-center text-slate-500 hover:text-blue-600">
+                <i class="fa-solid fa-crown text-xl"></i>
+                <span class="text-xs font-semibold">TOP PERF.</span>
+            </button>
+            <button onclick="switchTab('tab-wallet', 'WALLET')" class="flex flex-col items-center text-slate-500 hover:text-blue-600">
+                <i class="fa-solid fa-wallet text-xl"></i>
+                <span class="text-xs font-semibold">WALLET</span>
+            </button>
+        </div>
     </div>
-    <button onclick="toggleView('login')" class="text-sm bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700">
-      Login
-    </button>
-  </nav>
 
-  <!-- Hero / Home Section -->
-  <section id="home" class="py-12 px-6 text-center max-w-2xl mx-auto">
-    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Welcome to Earner Community</h1>
-    <p class="text-slate-600 mb-8">Build Your Financial Freedom With Digital Skills - Join India's fastest growing community.</p>
-    <div class="flex flex-col gap-4">
-      <button onclick="toggleView('login')" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:bg-blue-700 transition">Get Started &rarr;</button>
-      <button class="border border-blue-600 text-blue-600 font-semibold py-3 px-6 rounded-xl hover:bg-blue-50 transition">How It Works &rarr;</button>
-    </div>
-  </section>
+    <!-- JavaScript Logic -->
+    <script>
+        function toggleView(view) {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
 
-  <!-- Login Section -->
-  <section id="login" class="hidden py-12 px-6 max-w-md mx-auto">
-    <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
-      <div class="text-center mb-6">
-        <i class="fa-solid fa-user-gear text-4xl text-blue-600 mb-2"></i>
-        <h2 class="text-2xl font-bold">LOGIN ACCOUNT</h2>
-      </div>
-      <form onsubmit="handleLogin(event)">
-        <div class="mb-4 text-left">
-          <label class="block text-sm font-medium mb-1">Email Address</label>
-          <input type="email" required placeholder="name@example.com" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
-        </div>
-        <div class="mb-4 text-left">
-          <label class="block text-sm font-medium mb-1">Password</label>
-          <input type="password" required placeholder="••••••••" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
-        </div>
-        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow-md hover:bg-blue-700 transition">
-          <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
-        </button>
-      </form>
-    </div>
-  </section>
+            document.getElementById(view).classList.remove('hidden');
+        }
 
-  <!-- User Dashboard Section -->
-  <section id="dashboard" class="hidden min-h-screen bg-slate-100 pb-12">
-    <!-- Top Header -->
-    <div class="bg-white p-4 shadow flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <i class="fa-solid fa-bars text-xl text-slate-700"></i>
-        <h2 class="text-lg font-bold">DASHBOARD</h2>
-      </div>
-      <div class="w-8 h-8 rounded-full overflow-hidden border">
-        <img src="https://via.placeholder.com/150" alt="Profile" class="w-full h-full object-cover">
-      </div>
-    </div>
+        function handleLogin(event) {
+            event.preventDefault();
+            toggleView('dashboard');
+        }
 
-    <!-- User Info Card -->
-    <div class="p-6 max-w-3xl mx-auto">
-      <div class="bg-gradient-to-r from-amber-300 to-yellow-400 p-6 rounded-2xl text-center shadow-lg mb-6">
-        <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-4 border-white mb-2 shadow">
-          <img src="https://via.placeholder.com/150" alt="User">
-        </div>
-        <h3 class="text-xl font-bold text-slate-900">ayush 2605</h3>
-        <span class="inline-block bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold my-2">✓ Verified Member</span>
-        <p class="text-xs text-slate-800 font-medium">🚀 Powered by Zero Investment Platform</p>
-      </div>
+        function switchTab(tabId, title) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
 
-      <!-- Earnings Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white p-4 rounded-xl shadow border">
-          <p class="text-xs text-slate-500 font-semibold">Today's Earning</p>
-          <p class="text-2xl font-bold text-slate-800">₹0</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow border">
-          <p class="text-xs text-slate-500 font-semibold">7 Days Earning</p>
-          <p class="text-2xl font-bold text-slate-800">₹0</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow border">
-          <p class="text-xs text-slate-500 font-semibold">All Time Earning</p>
-          <p class="text-2xl font-bold text-blue-600">₹1,72,080</p>
-        </div>
-      </div>
-
-      <!-- Navigation Grid Icons -->
-      <div class="grid grid-cols-3 gap-3 bg-white p-4 rounded-2xl shadow">
-        <button class="p-3 text-center border rounded-xl hover:bg-slate-50">
-          <i class="fa-solid fa-chart-pie text-blue-600 text-xl block mb-1"></i>
-          <span class="text-xs font-semibold">DASHBOARD</span>
-        </button>
-        <button class="p-3 text-center border rounded-xl hover:bg-slate-50">
-          <i class="fa-solid fa-crown text-blue-600 text-xl block mb-1"></i>
-          <span class="text-xs font-semibold">TOP PERF.</span>
-        </button>
-        <button class="p-3 text-center border rounded-xl hover:bg-slate-50">
-          <i class="fa-solid fa-wallet text-blue-600 text-xl block mb-1"></i>
-          <span class="text-xs font-semibold">WALLET</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    function toggleView(view) {
-      document.getElementById('home').classList.add('hidden');
-      document.getElementById('login').classList.add('hidden');
-      document.getElementById('dashboard').classList.add('hidden');
-      document.getElementById(view).classList.remove('hidden');
-    }
-
-    function handleLogin(e) {
-      e.preventDefault();
-      toggleView('dashboard');
-    }
-  </script>
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('page-title').innerText = title;
+        }
+    </script>
 </body>
 </html>
