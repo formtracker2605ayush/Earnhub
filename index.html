@@ -1,809 +1,1629 @@
-You are an expert frontend developer.
-
-I want you to recreate the website shown in my attached/reference screenshots as accurately as possible.
-
-IMPORTANT:
-- Treat the screenshots as the PRIMARY visual reference.
-- Do NOT create a generic similar website.
-- Reproduce the same visual structure, spacing, typography, colors, borders, shadows, button styles, cards, sections, navbar, footer, and responsive behavior visible in the screenshots.
-- The website must be mobile-first and should look extremely close to the screenshots when opened on an Android phone.
-- Do not remove sections.
-- Do not add unrelated sections.
-- Keep the design clean and professional.
-- Use only HTML, CSS and vanilla JavaScript.
-- Everything must work from a normal GitHub Pages/static HTML website.
-- No backend is required.
-- No React, Next.js, Node.js or build process.
-- Put everything in ONE complete `index.html` file unless absolutely necessary.
-- Make the code directly runnable by opening index.html.
-
-==================================================
-WEBSITE BRAND
-==================================================
-
-Website name:
-Earner Community
-
-Use the logo image:
-`assets/logo.png`
-
-If logo.png is unavailable, create a clean placeholder area but keep the exact dimensions/position of the screenshot.
-
-Main visual theme:
-- Very light lavender/blue backgrounds
-- Dark navy text
-- Purple/indigo accent
-- Bright violet buttons
-- Green verification/accent elements
-- White cards
-- Soft shadows
-- Rounded corners
-- Thin purple section lines
-
-Approximate visual colors:
-Dark text: #111827
-Secondary text: #667085
-Purple: #5146E5
-Bright purple: #5B4BEE
-Light lavender: #EEF1FF
-Very light blue: #EAF7FF
-White: #FFFFFF
-Green: #10B981
-Dark footer: #172235
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Earner Community</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#172033;
+    background:#fff;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+:root{
+    --purple:#5548e8;
+    --purple2:#695cf2;
+    --light:#f1f3ff;
+    --blue:#edf8ff;
+    --dark:#172235;
+    --gray:#667085;
+    --green:#16a36a;
+    --white:#fff;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1120px,92%);
+    margin:auto;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 4%;
+    border-bottom:1px solid #edf0f5;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:20px;
+    font-weight:800;
+    color:var(--dark);
+}
+
+.logo-mark{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#5649e8,#8b80ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:900;
+    box-shadow:0 5px 15px rgba(85,72,232,.25);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav-links a{
+    padding:7px 2px;
+    position:relative;
+    color:#263044;
+}
+
+.nav-links a.active{
+    color:var(--purple);
+}
+
+.nav-links a.active:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-8px;
+    height:2px;
+    background:var(--purple);
+    border-radius:10px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(180deg,#f0f2ff 0%,#f7f8ff 100%);
+    text-align:center;
+    padding:75px 20px 90px;
+}
+
+.hero-logo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin:0 auto 25px;
+    background:linear-gradient(135deg,#5548e8,#8178ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:35px;
+    font-weight:900;
+    box-shadow:0 15px 35px rgba(85,72,232,.2);
+}
+
+.hero h1{
+    font-size:clamp(34px,6vw,60px);
+    line-height:1.12;
+    margin-bottom:22px;
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:var(--purple);
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:var(--gray);
+    font-size:16px;
+}
+
+.buttons{
+    margin-top:32px;
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:145px;
+    padding:13px 22px;
+    border-radius:9px;
+    font-weight:700;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--purple);
+    color:white;
+    box-shadow:0 8px 20px rgba(85,72,232,.22);
+}
+
+.btn-outline{
+    background:#fff;
+    border:1px solid var(--purple);
+    color:var(--purple);
+}
+
+/* ================= GENERAL ================= */
+
+section{
+    padding:75px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:34px;
+    line-height:1.2;
+    margin-bottom:12px;
+    font-weight:800;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:var(--gray);
+    max-width:650px;
+    margin:0 auto 40px;
+}
+
+.pill{
+    width:max-content;
+    max-width:92%;
+    margin:0 auto 16px;
+    padding:8px 16px;
+    border-radius:30px;
+    background:#ebeaff;
+    color:var(--purple);
+    font-weight:700;
+    font-size:13px;
+}
+
+/* ================= VERIFIED ================= */
+
+.verified{
+    background:#f1f3ff;
+    text-align:center;
+}
+
+.verify-icon{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    margin:0 auto 15px;
+    background:#dcf8ed;
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.verified h3{
+    color:var(--purple);
+    font-size:15px;
+    margin-bottom:9px;
+}
+
+.verified h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.verified h2 span{
+    color:var(--purple);
+}
+
+.verified p{
+    max-width:760px;
+    margin:auto;
+    color:var(--gray);
+}
+
+.verify-buttons{
+    margin-top:28px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.legit{
+    padding:12px 20px;
+    border:1px solid #36b77d;
+    background:#edfff7;
+    color:#14945f;
+    border-radius:8px;
+    font-weight:700;
+}
+
+/* ================= DIFFERENT ================= */
+
+.different{
+    background:#fff;
+}
+
+.diff-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-top:35px;
+}
+
+.simple-card{
+    background:white;
+    border:1px solid #edf0f5;
+    border-radius:14px;
+    padding:25px 15px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(30,40,80,.06);
+    font-weight:700;
+}
+
+.simple-card:before{
+    content:"✓";
+    display:block;
+    margin:0 auto 9px;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    border-radius:50%;
+    background:#e9e8ff;
+    color:var(--purple);
+}
+
+/* ================= WHY ================= */
+
+.why{
+    background:#edf8ff;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.feature{
+    background:#fff;
+    border-radius:15px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(30,40,80,.07);
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+}
+
+.feature-icon{
+    width:55px;
+    height:55px;
+    margin:0 auto 15px;
+    border-radius:15px;
+    background:#ebeaff;
+    color:var(--purple);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.feature h3{
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:var(--gray);
+    font-size:14px;
+}
+
+/* ================= JOURNEY ================= */
+
+.journey{
+    background:#f7f8fa;
+}
+
+.journey-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.journey-card{
+    background:#fff;
+    border-radius:16px;
+    padding:30px 24px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(30,40,80,.06);
+}
+
+.big-number{
+    position:absolute;
+    right:15px;
+    top:0;
+    font-size:80px;
+    line-height:1;
+    color:#f0f0fa;
+    font-weight:900;
+}
+
+.journey-card h3{
+    position:relative;
+    z-index:1;
+    margin-bottom:10px;
+}
+
+.journey-card p{
+    color:var(--gray);
+    font-size:14px;
+    position:relative;
+    z-index:1;
+}
+
+.check-list{
+    list-style:none;
+    margin-top:18px;
+    position:relative;
+    z-index:1;
+}
+
+.check-list li{
+    margin:8px 0;
+    font-size:14px;
+}
+
+.check-list li:before{
+    content:"✓";
+    color:var(--green);
+    font-weight:bold;
+    margin-right:8px;
+}
+
+/* ================= DETAILS ================= */
+
+.details{
+    text-align:center;
+    background:#fff;
+}
+
+.details a{
+    display:inline-block;
+    margin-top:12px;
+    color:var(--purple);
+    font-weight:700;
+    border-bottom:1px solid var(--purple);
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    background:linear-gradient(120deg,#5145df,#7669f5);
+    text-align:center;
+    color:#fff;
+    padding:85px 20px;
+}
+
+.cta h2{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.cta p{
+    max-width:650px;
+    margin:auto;
+    opacity:.9;
+}
+
+.cta .btn{
+    margin-top:28px;
+    background:#fff;
+    color:var(--purple);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:var(--dark);
+    color:#fff;
+    padding:65px 0 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:45px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p,
+footer li{
+    color:#b9c1d0;
+    font-size:14px;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer li{
+    margin:9px 0;
+}
+
+.social{
+    display:flex;
+    gap:9px;
+    margin-top:20px;
+}
+
+.social a{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#293449;
+    font-size:13px;
+}
+
+.copyright{
+    margin-top:45px;
+    padding-top:20px;
+    border-top:1px solid #303b50;
+    text-align:center;
+    color:#9da7b8;
+    font-size:13px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-hero{
+    background:#f1f3ff;
+    text-align:center;
+    padding:75px 20px;
+}
+
+.about-hero h1{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.about-hero p{
+    color:var(--gray);
+}
+
+.about-section{
+    background:#fff;
+}
+
+.about-box{
+    background:#fff;
+    border-radius:16px;
+    padding:35px;
+    box-shadow:0 8px 30px rgba(30,40,80,.07);
+    border-left:5px solid var(--purple);
+}
+
+.about-box h2{
+    margin-bottom:15px;
+}
+
+.about-box p{
+    color:var(--gray);
+    margin:10px 0;
+}
+
+.strength{
+    background:#f1f3ff;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.stat{
+    background:white;
+    border-radius:15px;
+    padding:28px 15px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(30,40,80,.06);
+}
+
+.stat strong{
+    display:block;
+    font-size:34px;
+    color:var(--purple);
+}
+
+.stat span{
+    font-size:12px;
+    color:#667085;
+    font-weight:700;
+}
+
+.testimonials{
+    background:#f1f3ff;
+}
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.testimonial{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 7px 25px rgba(30,40,80,.06);
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#5548e8,#9a92ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:800;
+}
+
+.testimonial p{
+    color:var(--gray);
+    font-size:14px;
+}
+
+.stars{
+    color:#f5b82e;
+    margin-top:12px;
+}
+
+.how-list{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.how-item{
+    background:#f7f8ff;
+    padding:15px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.how-number{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--purple);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    flex-shrink:0;
+}
+
+.founder{
+    text-align:center;
+}
+
+.founder-photo{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    margin:0 auto 18px;
+    background:linear-gradient(135deg,#5548e8,#8e86ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:40px;
+    font-weight:800;
+    border:5px solid #ebeaff;
+}
+
+.founder h3{
+    font-size:25px;
+}
+
+.founder-role{
+    color:var(--purple);
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    .navbar{
+        padding:0 14px;
+        height:65px;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .logo-mark{
+        width:32px;
+        height:32px;
+    }
+
+    .nav-links{
+        gap:12px;
+        font-size:11px;
+    }
+
+    .nav-links a.active:after{
+        bottom:-5px;
+    }
+
+    section{
+        padding:58px 0;
+    }
+
+    .hero{
+        padding:60px 17px 70px;
+    }
+
+    .hero-logo{
+        width:85px;
+        height:85px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .section-title{
+        font-size:29px;
+    }
+
+    .verified h2{
+        font-size:27px;
+    }
+
+    .diff-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .features{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .feature{
+        padding:22px 12px;
+    }
+
+    .feature h3{
+        font-size:15px;
+    }
+
+    .feature p{
+        font-size:12px;
+    }
+
+    .journey-grid{
+        grid-template-columns:1fr;
+    }
+
+    .journey-card{
+        padding:25px 20px;
+    }
+
+    .cta h2{
+        font-size:30px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .about-hero h1{
+        font-size:35px;
+    }
+
+    .about-box{
+        padding:25px 20px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .testimonial-grid{
+        grid-template-columns:1fr;
+    }
+
+    .buttons,
+    .verify-buttons{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+
+@media(max-width:380px){
+
+    .nav-links{
+        gap:8px;
+        font-size:10px;
+    }
+
+    .logo{
+        font-size:14px;
+    }
+
+    .features{
+        gap:8px;
+    }
+
+    .feature{
+        padding:18px 8px;
+    }
+
+    .hero h1{
+        font-size:31px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        <span class="logo-mark">EC</span>
+        <span>Earner Community</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="#home" class="active">Home →</a>
+        <a href="#about">About ↓</a>
+        <a href="#login">Login →</a>
+        <a href="#register">Register →</a>
+    </nav>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<main id="home">
+
+<section class="hero">
+
+    <div class="hero-logo">EC</div>
+
+    <h1>
+        Welcome to <span>Earner Community</span>
+    </h1>
+
+    <p>
+        Build Your Financial Freedom With Digital Skills -
+        Join India's fastest growing community for creating
+        sustainable online income with zero investment
+    </p>
+
+    <div class="buttons">
+
+        <a href="#register" class="btn btn-primary">
+            Get Started →
+        </a>
+
+        <a href="#journey" class="btn btn-outline">
+            How It Works →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- VERIFIED -->
+
+<section class="verified">
+
+    <div class="container">
+
+        <div class="verify-icon">✓</div>
+
+        <h3>Government Registered</h3>
+
+        <h2>
+            Officially <span>Verified & Trusted</span> Platform
+        </h2>
+
+        <p>
+            Earner Community is a fully registered and government
+            recognized platform operating with complete transparency
+            and compliance with all Indian legal regulations.
+        </p>
+
+        <div class="verify-buttons">
+
+            <a href="#" class="btn btn-primary">
+                📄 View Certificate
+            </a>
+
+            <span class="legit">
+                🛡 100% Legitimate
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DIFFERENT -->
+
+<section class="different">
+
+    <div class="container">
+
+        <div class="pill">What Makes Us Different</div>
+
+        <h2 class="section-title">
+            Simple. Transparent. Different.
+        </h2>
+
+        <div class="diff-grid">
+
+            <div class="simple-card">
+                No MLM
+            </div>
+
+            <div class="simple-card">
+                No Chain System
+            </div>
+
+            <div class="simple-card">
+                No Color Trading
+            </div>
+
+            <div class="simple-card">
+                No Product Selling
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE -->
+
+<section class="why">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Why Choose Earner Community?
+        </h2>
+
+        <p class="section-subtitle">
+            We provide everything you need to start earning online
+            with complete support and training
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🎓</div>
+                <h3>Expert Training</h3>
+                <p>
+                    Free professional training from industry experts
+                    worth ₹20,000+
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🤝</div>
+                <h3>24/7 Support</h3>
+                <p>
+                    Dedicated mentors always available to guide you
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">₹</div>
+                <h3>Regular Income</h3>
+                <p>
+                    Get paid every 3 days directly to your bank account
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Growth Path</h3>
+                <p>
+                    Structured system from beginner to mastery level
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <h3>Strong Community</h3>
+                <p>
+                    2500+ members supporting each other daily
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Work Anywhere</h3>
+                <p>
+                    All you need is a smartphone to start earning
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- JOURNEY -->
+
+<section class="journey" id="journey">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Your Success Journey
+        </h2>
+
+        <p class="section-subtitle">
+            Our proven 3-step system takes you from beginner
+            to financial freedom
+        </p>
+
+        <div class="journey-grid">
+
+            <div class="journey-card">
+
+                <span class="big-number">01</span>
+
+                <h3>Learn Basics</h3>
+
+                <p>
+                    Master the fundamentals of online earning
+                    with our beginner-friendly modules
+                </p>
+
+                <ul class="check-list">
+                    <li>Basic digital skills training</li>
+                    <li>Platform orientation</li>
+                    <li>Simple initial tasks</li>
+                </ul>
+
+            </div>
+
+
+            <div class="journey-card">
+
+                <span class="big-number">02</span>
+
+                <h3>Build Skills</h3>
+
+                <p>
+                    Enhance your capabilities with advanced
+                    digital marketing techniques
+                </p>
+
+                <ul class="check-list">
+                    <li>Content creation mastery</li>
+                    <li>Social media strategies</li>
+                    <li>Effective communication</li>
+                </ul>
+
+            </div>
+
+
+            <div class="journey-card">
+
+                <span class="big-number">03</span>
+
+                <h3>Earn More</h3>
+
+                <p>
+                    Implement strategies to multiply your
+                    earnings exponentially
+                </p>
+
+                <ul class="check-list">
+                    <li>Automation tools training</li>
+                    <li>Team building strategies</li>
+                    <li>Multiple income streams</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DETAILS -->
+
+<section class="details">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Want to Learn More About Our Community?
+        </h2>
+
+        <p class="section-subtitle">
+            Discover how our members are achieving financial
+            independence through digital skills
+        </p>
+
+        <a href="#about">
+            View Full Details →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>
+            Ready to Transform Your Life?
+        </h2>
+
+        <p>
+            Join thousands of members who are building sustainable
+            online incomes with our proven system
+        </p>
+
+        <a href="#register" class="btn">
+            Start Earning Today
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-hero" id="about">
+
+    <div class="container">
+
+        <h1>About Earner Community</h1>
+
+        <p>
+            Empowering financial freedom through
+            zero-investment online opportunities
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="about-section">
+
+    <div class="container">
+
+        <div class="about-box">
+
+            <h2>Our Vision</h2>
+
+            <p>
+                Earner Community provides a simple way to earn online
+                without any investment. We make it easy for beginners
+                to start their financial journey.
+            </p>
+
+            <p>
+                Our goal is to create a supportive community where
+                members help each other grow and succeed together
+                in online earning.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMMUNITY STRENGTH -->
+
+<section class="strength">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Community Strength
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>4225+</strong>
+                <span>ACTIVE MEMBERS</span>
+            </div>
+
+            <div class="stat">
+                <strong>195+</strong>
+                <span>ACTIVE TEAM</span>
+            </div>
+
+            <div class="stat">
+                <strong>100+</strong>
+                <span>SUPPORT TEAM</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>SUPPORT SYSTEM</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHAT WE OFFER -->
+
+<section>
+
+    <div class="container">
+
+        <div class="about-box">
+
+            <h2>What We Offer</h2>
+
+            <p>
+                Free training sessions twice every week on digital
+                skills that would normally cost thousands of rupees.
+            </p>
+
+            <p>
+                Beginner-friendly systems that become easier as
+                you gain experience.
+            </p>
+
+            <p>
+                A supportive community environment to help you
+                at every step.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
 
-Do not use excessive gradients except where visible in the CTA section.
+<section class="testimonials">
 
-==================================================
-GLOBAL NAVBAR
-==================================================
+    <div class="container">
 
-Create a sticky/fixed-looking top navigation matching the screenshots.
+        <h2 class="section-title">
+            What Our Members Say
+        </h2>
 
-Desktop:
-- White background
-- Logo on left
-- Navigation on right
-- Home
-- About
-- Login
-- Register
-- Small arrow icons beside links
-- Active page has a purple underline underneath it
-- Header has subtle shadow/border
+        <p class="section-subtitle">
+            Real experiences from our growing community
+        </p>
 
-Mobile:
-- Keep the same basic structure shown in screenshots.
-- Logo remains on the left.
-- Navigation links remain horizontally arranged and compact.
-- Make it fit the phone width without breaking.
-- Do NOT replace it with a hamburger menu unless absolutely necessary.
-- Font sizes and spacing should resemble the screenshots.
+        <div class="testimonial-grid">
+
+            <div class="testimonial">
+
+                <div class="profile">
+
+                    <div class="avatar">SA</div>
+
+                    <div>
+                        <strong>Shadab Akhtar</strong>
+                        <br>
+                        <small>Student</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    The training helped me understand digital work
+                    in a very simple way. The community support is
+                    also helpful.
+                </p>
 
-Navbar links:
-Home →
-About ↓
-Login →
-Register →
+                <div class="stars">★★★★★</div>
 
-Home should be active on Home page.
-About should be active on About page.
+            </div>
 
-==================================================
-HOME PAGE
-==================================================
 
-Create the Home page exactly following the screenshots.
+            <div class="testimonial">
 
---------------------------------------------------
-SECTION 1 — HERO
---------------------------------------------------
+                <div class="profile">
 
-Background: very light lavender/blue.
+                    <div class="avatar">A</div>
 
-Center everything.
+                    <div>
+                        <strong>Alfiya</strong>
+                        <br>
+                        <small>Freelancer</small>
+                    </div>
 
-At the top/middle:
-Large Earner Community logo.
+                </div>
 
-Heading:
+                <p>
+                    I liked the beginner-friendly approach and the
+                    step-by-step guidance provided by the community.
+                </p>
 
-"Welcome to Earner Community"
+                <div class="stars">★★★★★</div>
 
-Make:
-"Welcome to" dark navy
-"Earner Community" purple
+            </div>
 
-Large bold rounded/modern font.
 
-Subtitle:
+            <div class="testimonial">
 
-"Build Your Financial Freedom With Digital Skills - Join India's fastest growing community for creating sustainable online income with zero investment"
+                <div class="profile">
 
-Center aligned.
+                    <div class="avatar">I</div>
 
-Buttons:
+                    <div>
+                        <strong>Imran</strong>
+                        <br>
+                        <small>Content Creator</small>
+                    </div>
 
-[ Get Started → ]
+                </div>
 
-[ How It Works → ]
+                <p>
+                    The resources and support make it easier to learn
+                    new digital skills.
+                </p>
 
-First button:
-- purple background
-- white text
-- rounded corners
-- soft shadow
+                <div class="stars">★★★★★</div>
 
-Second button:
-- white background
-- purple border
-- purple text
+            </div>
 
-Add appropriate hover animations.
+        </div>
 
---------------------------------------------------
-SECTION 2 — GOVERNMENT REGISTERED
---------------------------------------------------
+    </div>
 
-Light lavender background.
+</section>
 
-Top centered verification icon/check.
 
-Text:
+<!-- ZERO INVESTMENT -->
 
-"Government Registered"
+<section>
 
-Main heading:
+    <div class="container">
 
-"Officially Verified & Trusted Platform"
+        <div class="about-box">
 
-Make:
-"Verified & Trusted" purple.
+            <h2>Why It's Zero Investment</h2>
 
-Description:
+            <p>
+                Our platform operates on a completely zero-investment
+                model because we believe financial opportunities
+                should be accessible to everyone, regardless of
+                their economic background.
+            </p>
 
-"Earner Community is a fully registered and government recognized platform operating with complete transparency and compliance with all Indian legal regulations."
+            <p>
+                We partner with brands that offer promotions and
+                special offers. When members engage with these
+                promotions through our platform, the brands may
+                pay commissions for customer engagement.
+            </p>
 
-Buttons:
+            <p>
+                Any earning depends on the available tasks,
+                eligibility and applicable terms.
+            </p>
 
-[ 📄 View Certificate ]
+            <a href="#" class="btn btn-primary" style="margin-top:15px;">
+                Read More
+            </a>
 
-[ 🛡 100% Legitimate ]
+        </div>
 
-Certificate button purple.
+    </div>
 
-Legitimate badge green outline/light green background.
+</section>
 
-Add a thin purple separator/border between sections as visible in screenshot.
 
---------------------------------------------------
-SECTION 3 — WHAT MAKES US DIFFERENT
---------------------------------------------------
+<!-- HOW IT WORKS -->
 
-Light gray/white background.
+<section class="journey">
 
-Centered pill heading:
+    <div class="container">
 
-"What Makes Us Different"
+        <div class="about-box">
 
-Four small white cards:
+            <h2>How It Works</h2>
 
-No MLM
-No Chain System
-No Color Trading
-No Product Selling
+            <div class="how-list">
 
-Cards:
-- white
-- rounded
-- subtle shadow
-- centered text
-- equal dimensions
+                <div class="how-item">
+                    <span class="how-number">1</span>
+                    Join completely free – no hidden costs
+                </div>
 
-On mobile they should fit like the screenshot.
+                <div class="how-item">
+                    <span class="how-number">2</span>
+                    Learn from our free training
+                </div>
 
---------------------------------------------------
-SECTION 4 — WHY CHOOSE EARNER COMMUNITY
---------------------------------------------------
+                <div class="how-item">
+                    <span class="how-number">3</span>
+                    Start with simple tasks
+                </div>
 
-Light blue background.
+                <div class="how-item">
+                    <span class="how-number">4</span>
+                    Grow your digital skills
+                </div>
 
-Heading:
+            </div>
 
-"Why Choose Earner Community?"
+        </div>
 
-Subtitle:
+    </div>
 
-"We provide everything you need to start earning online with complete support and training"
+</section>
 
-Create 6 white cards in a responsive 2-column mobile layout matching the screenshot.
 
-Card 1:
-Icon: graduation cap
-Title: Expert Training
-Description:
-"Free professional training from industry experts worth ₹20,000+"
+<!-- FOUNDER -->
 
-Card 2:
-Icon: hand/support
-Title: 24/7 Support
-Description:
-"Dedicated mentors always available to guide you"
+<section>
 
-Card 3:
-Icon: ₹ / money
-Title: Regular Income
-Description:
-"Get paid every 3 days directly to your bank account"
+    <div class="container">
 
-Card 4:
-Icon: growth chart
-Title: Growth Path
-Description:
-"Structured system from beginner to mastery level"
+        <div class="about-box founder">
 
-Card 5:
-Icon: community/users
-Title: Strong Community
-Description:
-"2500+ members supporting each other daily"
+            <h2>Our Founder</h2>
 
-Card 6:
-Icon: mobile phone
-Title: Work Anywhere
-Description:
-"All you need is a smartphone to start earning"
+            <div class="founder-photo">
+                A
+            </div>
 
-Use purple icons.
+            <h3>Ayush</h3>
 
-Cards must have:
-- white background
-- rounded corners
-- subtle shadow
-- generous internal padding
-- centered icon/title
-- gray description text
+            <div class="founder-role">
+                Founder & CEO, Earner Community
+            </div>
 
---------------------------------------------------
-SECTION 5 — YOUR SUCCESS JOURNEY
---------------------------------------------------
+            <p>
+                With a vision to empower individuals through
+                accessible digital opportunities, Ayush founded
+                Earner Community to create a supportive environment
+                for people interested in learning digital skills.
+            </p>
 
-Light gray background.
+            <div class="social" style="justify-content:center;">
 
-Heading:
+                <a href="#">IG</a>
+                <a href="#">✉</a>
 
-"Your Success Journey"
+            </div>
 
-Subtitle:
+        </div>
 
-"Our proven 3-step system takes you from beginner to financial freedom"
+    </div>
 
-Create 3 cards.
+</section>
 
-CARD 01:
-Title:
-"Learn Basics"
 
-Description:
-"Master the fundamentals of online earning with our beginner-friendly modules"
+<!-- FOOTER -->
 
-Checklist:
-✓ Basic digital skills training
-✓ Platform orientation
-✓ Simple initial tasks
+<footer id="register">
 
-CARD 02:
-Title:
-"Build Skills"
+    <div class="container">
 
-Description:
-"Enhance your capabilities with advanced digital marketing techniques"
+        <div class="footer-grid">
 
-Checklist:
-✓ Content creation mastery
-✓ Social media strategies
-✓ Effective communication
+            <div>
 
-CARD 03:
-Title:
-"Earn More"
+                <h3>Earner Community</h3>
 
-Description:
-"Implement strategies to multiply your earnings exponentially"
+                <p>
+                    Empowering financial freedom through
+                    zero-investment online opportunities since 2023.
+                </p>
 
-Checklist:
-✓ Automation tools training
-✓ Team building strategies
-✓ Multiple income streams
+                <div class="social">
+                    <a href="#">f</a>
+                    <a href="#">𝕏</a>
+                    <a href="#">◎</a>
+                    <a href="#">in</a>
+                    <a href="#">▶</a>
+                </div>
 
-Each card should show a very large, extremely light number:
-01
-02
-03
+            </div>
 
-Position number in the top-right area of card like screenshot.
 
-Checklist ticks should be green.
+            <div>
 
-On mobile:
-- Card 01 and 02 can appear in two columns if screen width allows.
-- Card 03 should follow naturally.
-- Maintain screenshot-like spacing.
+                <h3>Quick Links</h3>
 
---------------------------------------------------
-SECTION 6 — LEARN MORE CTA
---------------------------------------------------
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#home">Features</a></li>
+                    <li><a href="#journey">Process</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
 
-White background.
+            </div>
 
-Heading:
 
-"Want to Learn More About Our Community?"
+            <div id="login">
 
-Description:
+                <h3>Contact Info</h3>
 
-"Discover how our members are achieving financial independence through digital skills"
+                <p>📍 Hyderabad, Telangana</p>
+                <p>500005</p>
+                <p>✉ support@earnercommunity.in</p>
 
-Centered link:
+            </div>
 
-"View Full Details →"
+        </div>
 
-Purple and underlined.
 
---------------------------------------------------
-SECTION 7 — FINAL CTA
---------------------------------------------------
+        <div class="copyright">
+            © 2025-2026 EC Fintech. All Rights Reserved.
+        </div>
 
-Large purple/blue gradient section similar to screenshot.
+    </div>
 
-Heading:
+</footer>
 
-"Ready to Transform Your Life?"
 
-Description:
+<script>
 
-"Join thousands of members who are building sustainable online incomes with our proven system"
+/* Smooth internal navigation */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-White button:
+    link.addEventListener('click', function(e){
 
-"Start Earning Today"
+        const target = document.querySelector(this.getAttribute('href'));
 
-Button should be centered with rounded corners and subtle shadow.
+        if(target){
+            e.preventDefault();
 
---------------------------------------------------
-FOOTER
---------------------------------------------------
+            target.scrollIntoView({
+                behavior:'smooth',
+                block:'start'
+            });
+        }
 
-Dark navy background.
+    });
 
-Three-column desktop layout.
+});
 
-Column 1:
-Earner Community
 
-"Empowering financial freedom through zero-investment online opportunities since 2023."
+/* Small scroll animation */
+const observer = new IntersectionObserver((entries)=>{
 
-Social media circular icons:
-Facebook
-Twitter/X
-Instagram
-LinkedIn
-YouTube
+    entries.forEach(entry=>{
 
-Column 2:
-Quick Links
+        if(entry.isIntersecting){
+            entry.target.style.opacity="1";
+            entry.target.style.transform="translateY(0)";
+        }
 
-Home
-Features
-Process
-About
+    });
 
-Column 3:
-Contact Info
+},{threshold:.08});
 
-📍 Hyderabad, Telangana
-500005
 
-✉ support@earnercommunity.in
+document.querySelectorAll(
+    '.feature,.journey-card,.simple-card,.stat,.testimonial,.about-box'
+).forEach(el=>{
 
-Bottom divider.
+    el.style.opacity="0";
+    el.style.transform="translateY(15px)";
+    el.style.transition="opacity .5s ease, transform .5s ease";
 
-Copyright:
+    observer.observe(el);
 
-"© 2025-2026 EC Fintech. All Rights Reserved."
+});
 
-Add small scroll-to-top floating button at bottom-right like the screenshot.
+</script>
 
-==================================================
-ABOUT PAGE
-==================================================
-
-IMPORTANT:
-The About page must use THE SAME navbar, typography, colors, card styling, spacing and footer as Home.
-
-URL/path:
-`about.html`
-
-If using only one HTML file, implement About page using JavaScript routing/query/hash while preserving the same design.
-
---------------------------------------------------
-ABOUT HERO
---------------------------------------------------
-
-Light lavender background.
-
-Centered heading:
-
-"About Earner Community"
-
-Subtitle:
-
-"Empowering financial freedom through zero-investment online opportunities"
-
---------------------------------------------------
-OUR VISION
---------------------------------------------------
-
-White card with subtle shadow.
-
-Purple vertical accent line on left.
-
-Heading:
-
-"Our Vision"
-
-Text:
-
-"Earner Community provides a simple way to earn online without any investment. We make it easy for beginners to start their financial journey."
-
-Second paragraph:
-
-"Our goal is to create a supportive community where members help each other grow and succeed together in online earning."
-
-Use purple highlighted "Earner Community".
-
---------------------------------------------------
-COMMUNITY STRENGTH
---------------------------------------------------
-
-Light lavender/blue section.
-
-Heading:
-
-"Community Strength"
-
-Four cards:
-
-4225+
-ACTIVE MEMBERS
-
-195+
-ACTIVE TEAM
-
-100+
-SUPPORT TEAM
-
-24/7
-SUPPORT SYSTEM
-
-Numbers should be large and purple.
-
-Cards white with rounded corners and shadows.
-
---------------------------------------------------
-WHAT WE OFFER
---------------------------------------------------
-
-White card.
-
-Purple left accent line.
-
-Heading:
-
-"What We Offer"
-
-Text blocks:
-
-"Free training sessions twice every week on digital skills that would normally cost thousands of rupees."
-
-"Beginner-friendly systems that become easier as you gain experience."
-
-"A supportive community environment to help you at every step."
-
---------------------------------------------------
-WHAT OUR MEMBERS SAY
---------------------------------------------------
-
-Light lavender background.
-
-Heading:
-
-"What Our Members Say"
-
-Create horizontally scrollable testimonial cards on mobile, matching screenshot.
-
-Use circular profile images.
-
-Example cards:
-
-Shadab Akhtar
-Student
-
-Alfiya
-Freelancer
-
-Imran
-Content Creator
-
-Each card:
-- profile image
-- name
-- role
-- testimonial text
-- five-star rating
-- "View Review →"
-
-Use placeholder images if the real images are unavailable:
-`assets/shadab.jpg`
-`assets/alfiya.jpg`
-`assets/imran.jpg`
-
-Do not stretch profile pictures.
-
---------------------------------------------------
-WHY IT'S ZERO INVESTMENT
---------------------------------------------------
-
-Light lavender/blue card section.
-
-Heading:
-
-"Why It's Zero Investment"
-
-Text:
-
-"Our platform operates on a completely zero-investment model because we believe financial opportunities should be accessible to everyone, regardless of their economic background."
-
-"We partner with top brands that offer free promotions and special offers. When our members engage with these brands through our platform, the brands pay us commission for the promotion and customer engagement."
-
-"This commission is then distributed among our members as earnings. We don't charge any fees or take any cuts from our members' earnings because our revenue comes directly from the brands we promote."
-
-Purple button:
-
-"Read More"
-
---------------------------------------------------
-HOW IT WORKS
---------------------------------------------------
-
-White card.
-
-Heading:
-
-"How It Works"
-
-Create four horizontal numbered rows:
-
-1  Join completely free – no hidden costs
-2  Learn from our free training
-3  Start with simple tasks
-4  Grow your earnings
-
-Number circles should be purple.
-
-Rows should have very light lavender backgrounds.
-
---------------------------------------------------
-OUR FOUNDER
---------------------------------------------------
-
-White card.
-
-Heading:
-
-"Our Founder"
-
-Use image:
-
-`assets/founder.jpg`
-
-Circular profile image with purple border.
-
-Name:
-
-"Athar Sadiq"
-
-Subtitle:
-
-"Founder & CEO, Earner Community"
-
-Description:
-
-"With a vision to empower individuals through digital opportunities, Athar founded Earner Community to provide accessible earning solutions for everyone."
-
-Add Instagram and email circular icons underneath.
-
---------------------------------------------------
-ABOUT PAGE FOOTER
---------------------------------------------------
-
-Use exactly the SAME footer as Home.
-
-Do not create a different footer design.
-
-==================================================
-RESPONSIVENESS
-==================================================
-
-This is extremely important.
-
-The screenshots were taken on a mobile Android browser.
-
-Optimize primarily for:
-- 360px
-- 375px
-- 390px
-- 412px
-- 430px
-
-Also make it responsive for tablet and desktop.
-
-Mobile requirements:
-- No horizontal page overflow.
-- No text cut off.
-- No cards going outside viewport.
-- Correct padding.
-- Headings should wrap naturally.
-- Buttons should remain usable.
-- Cards should have the same rounded/shadow appearance.
-- Test every section at 360px width.
-
-==================================================
-TYPOGRAPHY
-==================================================
-
-Use a modern rounded professional font similar to the screenshot.
-
-Prefer:
-`Poppins`, `Inter`, or a close Google Font.
-
-Use:
-- heavy/bold headings
-- medium navigation
-- gray body text
-- purple highlighted words
-
-Make typography visually close to screenshots.
-
-==================================================
-ICONS
-==================================================
-
-Use Font Awesome or another free icon library through CDN if needed.
-
-Icons should visually resemble:
-- check
-- graduation cap
-- support/hand
-- money
-- growth chart
-- users
-- mobile
-- location
-- email
-- social media
-- arrow
-
-Do not use huge emojis where an actual icon can be used.
-
-==================================================
-ANIMATIONS
-==================================================
-
-Keep animations subtle.
-
-Add:
-- button hover
-- card hover
-- smooth scrolling
-- section fade-in when entering viewport
-- slight transform on cards
-
-Do NOT make animations excessive.
-
-The screenshots have a clean professional appearance.
-
-==================================================
-FUNCTIONALITY
-==================================================
-
-Navbar:
-Home -> Home page
-About -> About page
-Login -> `login.html`
-Register -> `register.html`
-
-Buttons:
-Get Started -> `register.html`
-How It Works -> scroll to How It Works / About section
-View Full Details -> About page
-Start Earning Today -> `register.html`
-
-Certificate:
-Open `certificate.html` if available.
-
-Social links can use placeholder `#` if actual URLs are not provided.
-
-Add smooth scrolling.
-
-Add working scroll-to-top button.
-
-==================================================
-IMPORTANT IMAGE RULE
-==================================================
-
-Do not invent a completely different logo.
-
-Use:
-`assets/logo.png`
-
-Use:
-`assets/founder.jpg`
-
-Use:
-`assets/shadab.jpg`
-`assets/alfiya.jpg`
-`assets/imran.jpg`
-
-If any image is missing, keep the exact same container dimensions and use a temporary placeholder so the layout does not break.
-
-==================================================
-CODE QUALITY
-==================================================
-
-Return the COMPLETE working code.
-
-Do not give partial snippets.
-
-Do not say "continue from here".
-
-Do not omit CSS.
-
-Do not omit JavaScript.
-
-Do not leave TODO comments for important functionality.
-
-Make sure all HTML tags are correctly closed.
-
-Make sure the page works immediately.
-
-Use semantic HTML where possible.
-
-Use CSS variables for the main colors.
-
-Use responsive media queries.
-
-==================================================
-FINAL REQUIREMENT
-==================================================
-
-The final result should visually resemble the supplied screenshots as closely as possible.
-
-Priority order:
-
-1. Exact layout
-2. Exact section order
-3. Exact colors
-4. Exact spacing
-5. Exact card proportions
-6. Exact typography hierarchy
-7. Exact navbar
-8. Exact buttons
-9. Exact footer
-10. Responsive mobile appearance
-
-DO NOT redesign the website.
-DO NOT simplify it.
-DO NOT remove sections.
-DO NOT replace the mobile layout with a generic modern template.
-
-Build the complete Earner Community Home + About website based on the screenshots.
+</body>
+</html>
