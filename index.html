@@ -1,277 +1,809 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earn Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .sidebar-transition { transition: transform 0.3s ease-in-out; }
-    </style>
-</head>
-<body class="bg-gray-100 font-sans text-gray-800 antialiased">
+You are an expert frontend developer.
 
-    <!-- Top Navigation Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40 flex justify-between items-center px-4 py-3 border-b border-gray-200">
-        <div class="flex items-center gap-3">
-            <button id="menu-btn" onclick="toggleSidebar()" class="hidden text-gray-700 text-xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home-page')">
-                <div class="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xl shadow-md">E</div>
-                <span class="text-xl font-extrabold text-blue-900 tracking-tight">EARN HUB</span>
-            </div>
-        </div>
-        <div id="auth-buttons" class="flex gap-2">
-            <button onclick="showPage('login-page')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded-lg transition shadow">Login</button>
-        </div>
-        <div id="user-profile-header" class="hidden flex items-center gap-2">
-            <img src="https://via.placeholder.com/40" class="w-8 h-8 rounded-full border border-blue-500">
-        </div>
-    </header>
+I want you to recreate the website shown in my attached/reference screenshots as accurately as possible.
 
-    <!-- Sidebar Overlay & Drawer -->
-    <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-black/50 z-40"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-white shadow-2xl z-50 transform -translate-x-full sidebar-transition overflow-y-auto">
-        <div class="p-4 border-b flex justify-between items-center bg-blue-900 text-white">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-white text-blue-900 rounded-full flex items-center justify-center font-bold">EH</div>
-                <span class="font-bold text-lg">EARN HUB</span>
-            </div>
-            <button onclick="toggleSidebar()" class="text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <nav class="p-4 space-y-1 text-sm font-medium">
-            <button onclick="switchTab('tab-dashboard')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-blue-600 bg-blue-50 font-semibold"><i class="fa-solid fa-chart-pie w-5"></i> Dashboard</button>
-            <button onclick="switchTab('tab-payouts')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100"><i class="fa-solid fa-wallet w-5"></i> Pro Payouts</button>
-            <button onclick="switchTab('tab-reports')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100"><i class="fa-solid fa-file-invoice w-5"></i> Pro Reports</button>
-            <button onclick="switchTab('tab-leaderboard')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100"><i class="fa-solid fa-crown w-5"></i> Top Performers</button>
-            <hr class="my-3">
-            <button onclick="showPage('home-page')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-600 hover:bg-red-50"><i class="fa-solid fa-right-from-bracket w-5"></i> Logout</button>
-        </nav>
-    </aside>
+IMPORTANT:
+- Treat the screenshots as the PRIMARY visual reference.
+- Do NOT create a generic similar website.
+- Reproduce the same visual structure, spacing, typography, colors, borders, shadows, button styles, cards, sections, navbar, footer, and responsive behavior visible in the screenshots.
+- The website must be mobile-first and should look extremely close to the screenshots when opened on an Android phone.
+- Do not remove sections.
+- Do not add unrelated sections.
+- Keep the design clean and professional.
+- Use only HTML, CSS and vanilla JavaScript.
+- Everything must work from a normal GitHub Pages/static HTML website.
+- No backend is required.
+- No React, Next.js, Node.js or build process.
+- Put everything in ONE complete `index.html` file unless absolutely necessary.
+- Make the code directly runnable by opening index.html.
 
-    <!-- PAGE 1: Landing / Home Page -->
-    <main id="home-page" class="page-view max-w-4xl mx-auto px-4 py-8 text-center">
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
-            <h1 class="text-3xl font-black text-gray-900 mb-2">Welcome to <span class="text-blue-600">Earn Hub</span></h1>
-            <p class="text-gray-600 mb-6">Build Your Financial Freedom With Digital Skills - Join India's fastest growing community.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="showPage('login-page')" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-blue-700 transition">Get Started &rarr;</button>
-                <button class="border border-blue-600 text-blue-600 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition">How It Works &rarr;</button>
-            </div>
-        </div>
+==================================================
+WEBSITE BRAND
+==================================================
 
-        <!-- Features / Badges -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="bg-white p-4 rounded-xl shadow-sm border"><p class="font-bold text-gray-800 text-sm">Officially Verified</p></div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border"><p class="font-bold text-gray-800 text-sm">No MLM / No Chain</p></div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border"><p class="font-bold text-gray-800 text-sm">100% Legitimate</p></div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border"><p class="font-bold text-gray-800 text-sm">24/7 Support</p></div>
-        </div>
-    </main>
+Website name:
+Earner Community
 
-    <!-- PAGE 2: Login Page -->
-    <main id="login-page" class="page-view hidden max-w-md mx-auto px-4 py-12">
-        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-center">
-            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-                <i class="fa-solid fa-user-gear"></i>
-            </div>
-            <h2 class="text-2xl font-bold mb-6">LOGIN ACCOUNT</h2>
-            <form onsubmit="handleLogin(event)" class="space-y-4 text-left">
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Email Address</label>
-                    <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-600 outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Password</label>
-                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-600 outline-none text-sm">
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-blue-700 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login
-                </button>
-            </form>
-        </div>
-    </main>
+Use the logo image:
+`assets/logo.png`
 
-    <!-- PAGE 3: Dashboard View (Main App Area) -->
-    <div id="dashboard-page" class="page-view hidden min-h-screen pb-20">
-        
-        <!-- Tab Content 1: Main Dashboard -->
-        <div id="tab-dashboard" class="tab-view max-w-xl mx-auto p-4 space-y-5">
-            <!-- Profile Banner -->
-            <div class="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-400 p-6 rounded-2xl text-center shadow-md relative overflow-hidden">
-                <div class="w-20 h-20 bg-white rounded-full p-1 mx-auto mb-2 shadow">
-                    <img src="https://via.placeholder.com/150" class="w-full h-full rounded-full object-cover">
-                </div>
-                <h3 class="text-xl font-black text-gray-900 tracking-wide">AYUSH 2605</h3>
-                <span class="inline-block bg-emerald-600 text-white text-xs font-bold px-3 py-0.5 rounded-full my-1 shadow-sm">✓ Verified Member</span>
-                <p class="text-xs font-semibold text-gray-800 mt-1">🚀 Powered by Zero Investment Platform</p>
-            </div>
+If logo.png is unavailable, create a clean placeholder area but keep the exact dimensions/position of the screenshot.
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                    <p class="text-xs font-bold text-gray-500 uppercase">Today's Earning</p>
-                    <p class="text-xl font-black text-gray-800 mt-1">₹0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                    <p class="text-xs font-bold text-gray-500 uppercase">7 Days Earning</p>
-                    <p class="text-xl font-black text-gray-800 mt-1">₹0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 col-span-2">
-                    <p class="text-xs font-bold text-gray-500 uppercase">All Time Earning</p>
-                    <p class="text-2xl font-black text-blue-900 mt-1">₹1,72,080</p>
-                </div>
-            </div>
+Main visual theme:
+- Very light lavender/blue backgrounds
+- Dark navy text
+- Purple/indigo accent
+- Bright violet buttons
+- Green verification/accent elements
+- White cards
+- Soft shadows
+- Rounded corners
+- Thin purple section lines
 
-            <!-- Quick Action Icons Grid -->
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Quick Links</h4>
-                <div class="grid grid-cols-3 gap-4 text-center text-xs font-semibold">
-                    <button onclick="switchTab('tab-dashboard')" class="flex flex-col items-center gap-1.5 text-blue-600">
-                        <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-base"><i class="fa-solid fa-chart-pie"></i></div>
-                        Dashboard
-                    </button>
-                    <button onclick="switchTab('tab-payouts')" class="flex flex-col items-center gap-1.5 text-gray-600 hover:text-blue-600">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base"><i class="fa-solid fa-wallet"></i></div>
-                        Pro Payouts
-                    </button>
-                    <button onclick="switchTab('tab-reports')" class="flex flex-col items-center gap-1.5 text-gray-600 hover:text-blue-600">
-                        <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base"><i class="fa-solid fa-file-lines"></i></div>
-                        Pro Reports
-                    </button>
-                </div>
-            </div>
-        </div>
+Approximate visual colors:
+Dark text: #111827
+Secondary text: #667085
+Purple: #5146E5
+Bright purple: #5B4BEE
+Light lavender: #EEF1FF
+Very light blue: #EAF7FF
+White: #FFFFFF
+Green: #10B981
+Dark footer: #172235
 
-        <!-- Tab Content 2: Pro Payouts -->
-        <div id="tab-payouts" class="tab-view hidden max-w-xl mx-auto p-4 space-y-4">
-            <h3 class="text-lg font-bold text-gray-800 mb-2">Pro Payout Offers</h3>
-            
-            <!-- Card 1 -->
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-black text-blue-900 text-lg">5Paisa</span>
-                    <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">Active</span>
-                </div>
-                <div class="space-y-1 text-xs text-gray-600 mb-4">
-                    <p>Activation Done: <span class="font-bold text-gray-800">₹300.00</span></p>
-                    <p>Account Open: <span class="font-bold text-gray-800">₹0.00</span></p>
-                </div>
-                <button class="w-full bg-blue-600 text-white font-bold py-2 rounded-xl text-xs hover:bg-blue-700 transition">Get Referral Link</button>
-            </div>
+Do not use excessive gradients except where visible in the CTA section.
 
-            <!-- Card 2 -->
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-black text-blue-900 text-lg">AngelOne</span>
-                    <span class="text-xs bg-blue-100 text-blue-700 font-bold px-2.5 py-1 rounded-full">Active</span>
-                </div>
-                <div class="space-y-1 text-xs text-gray-600 mb-4">
-                    <p>Activation Done: <span class="font-bold text-gray-800">₹400.00</span></p>
-                    <p>Account Open: <span class="font-bold text-gray-800">₹180.00</span></p>
-                </div>
-                <button class="w-full bg-blue-600 text-white font-bold py-2 rounded-xl text-xs hover:bg-blue-700 transition">Get Referral Link</button>
-            </div>
-        </div>
+==================================================
+GLOBAL NAVBAR
+==================================================
 
-        <!-- Tab Content 3: Pro Reports -->
-        <div id="tab-reports" class="tab-view hidden max-w-xl mx-auto p-4 space-y-4">
-            <h3 class="text-lg font-bold text-gray-800 mb-2">Pro Reports & Downline</h3>
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
-                    <input type="text" placeholder="Enter full name" class="w-full p-2.5 border rounded-lg text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Mobile Number</label>
-                    <input type="tel" placeholder="Enter mobile number" class="w-full p-2.5 border rounded-lg text-sm">
-                </div>
-                <button class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-lg text-sm shadow hover:bg-blue-700 transition">Create Downline</button>
-            </div>
-        </div>
+Create a sticky/fixed-looking top navigation matching the screenshots.
 
-        <!-- Tab Content 4: Leaderboard -->
-        <div id="tab-leaderboard" class="tab-view hidden max-w-xl mx-auto p-4">
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
-                <h3 class="text-lg font-bold mb-4 border-b pb-2">Top Performers</h3>
-                <div class="space-y-3 text-sm">
-                    <div class="flex justify-between items-center py-2 border-b">
-                        <span class="font-bold text-gray-800">1. Rahul Sharma</span>
-                        <span class="text-emerald-600 font-extrabold">₹2,50,000</span>
-                    </div>
-                    <div class="flex justify-between items-center py-2 border-b bg-blue-50 px-2 rounded-lg">
-                        <span class="font-bold text-blue-900">2. AYUSH (You)</span>
-                        <span class="text-emerald-600 font-extrabold">₹1,72,080</span>
-                    </div>
-                    <div class="flex justify-between items-center py-2 border-b">
-                        <span class="font-bold text-gray-800">3. Priya Verma</span>
-                        <span class="text-emerald-600 font-extrabold">₹1,20,000</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+Desktop:
+- White background
+- Logo on left
+- Navigation on right
+- Home
+- About
+- Login
+- Register
+- Small arrow icons beside links
+- Active page has a purple underline underneath it
+- Header has subtle shadow/border
 
-        <!-- Bottom Navigation Bar -->
-        <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2.5 shadow-lg z-30">
-            <button onclick="switchTab('tab-dashboard')" class="nav-btn flex flex-col items-center text-blue-600 text-xs font-bold">
-                <i class="fa-solid fa-chart-pie text-lg mb-0.5"></i>
-                Dashboard
-            </button>
-            <button onclick="switchTab('tab-payouts')" class="nav-btn flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-bold">
-                <i class="fa-solid fa-wallet text-lg mb-0.5"></i>
-                Payouts
-            </button>
-            <button onclick="switchTab('tab-reports')" class="nav-btn flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-bold">
-                <i class="fa-solid fa-file-invoice text-lg mb-0.5"></i>
-                Reports
-            </button>
-        </nav>
-    </div>
+Mobile:
+- Keep the same basic structure shown in screenshots.
+- Logo remains on the left.
+- Navigation links remain horizontally arranged and compact.
+- Make it fit the phone width without breaking.
+- Do NOT replace it with a hamburger menu unless absolutely necessary.
+- Font sizes and spacing should resemble the screenshots.
 
-    <!-- JavaScript Navigation Logic -->
-    <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
-            document.getElementById(pageId).classList.remove('hidden');
+Navbar links:
+Home →
+About ↓
+Login →
+Register →
 
-            const menuBtn = document.getElementById('menu-btn');
-            const authBtns = document.getElementById('auth-buttons');
+Home should be active on Home page.
+About should be active on About page.
 
-            if (pageId === 'dashboard-page') {
-                menuBtn.classList.remove('hidden');
-                authBtns.classList.add('hidden');
-            } else {
-                menuBtn.classList.add('hidden');
-                authBtns.classList.remove('hidden');
-                closeSidebar();
-            }
-        }
+==================================================
+HOME PAGE
+==================================================
 
-        function handleLogin(event) {
-            event.preventDefault();
-            showPage('dashboard-page');
-            switchTab('tab-dashboard');
-        }
+Create the Home page exactly following the screenshots.
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-view').forEach(t => t.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            closeSidebar();
-        }
+--------------------------------------------------
+SECTION 1 — HERO
+--------------------------------------------------
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
+Background: very light lavender/blue.
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-        }
-    </script>
-</body>
-</html>
+Center everything.
+
+At the top/middle:
+Large Earner Community logo.
+
+Heading:
+
+"Welcome to Earner Community"
+
+Make:
+"Welcome to" dark navy
+"Earner Community" purple
+
+Large bold rounded/modern font.
+
+Subtitle:
+
+"Build Your Financial Freedom With Digital Skills - Join India's fastest growing community for creating sustainable online income with zero investment"
+
+Center aligned.
+
+Buttons:
+
+[ Get Started → ]
+
+[ How It Works → ]
+
+First button:
+- purple background
+- white text
+- rounded corners
+- soft shadow
+
+Second button:
+- white background
+- purple border
+- purple text
+
+Add appropriate hover animations.
+
+--------------------------------------------------
+SECTION 2 — GOVERNMENT REGISTERED
+--------------------------------------------------
+
+Light lavender background.
+
+Top centered verification icon/check.
+
+Text:
+
+"Government Registered"
+
+Main heading:
+
+"Officially Verified & Trusted Platform"
+
+Make:
+"Verified & Trusted" purple.
+
+Description:
+
+"Earner Community is a fully registered and government recognized platform operating with complete transparency and compliance with all Indian legal regulations."
+
+Buttons:
+
+[ 📄 View Certificate ]
+
+[ 🛡 100% Legitimate ]
+
+Certificate button purple.
+
+Legitimate badge green outline/light green background.
+
+Add a thin purple separator/border between sections as visible in screenshot.
+
+--------------------------------------------------
+SECTION 3 — WHAT MAKES US DIFFERENT
+--------------------------------------------------
+
+Light gray/white background.
+
+Centered pill heading:
+
+"What Makes Us Different"
+
+Four small white cards:
+
+No MLM
+No Chain System
+No Color Trading
+No Product Selling
+
+Cards:
+- white
+- rounded
+- subtle shadow
+- centered text
+- equal dimensions
+
+On mobile they should fit like the screenshot.
+
+--------------------------------------------------
+SECTION 4 — WHY CHOOSE EARNER COMMUNITY
+--------------------------------------------------
+
+Light blue background.
+
+Heading:
+
+"Why Choose Earner Community?"
+
+Subtitle:
+
+"We provide everything you need to start earning online with complete support and training"
+
+Create 6 white cards in a responsive 2-column mobile layout matching the screenshot.
+
+Card 1:
+Icon: graduation cap
+Title: Expert Training
+Description:
+"Free professional training from industry experts worth ₹20,000+"
+
+Card 2:
+Icon: hand/support
+Title: 24/7 Support
+Description:
+"Dedicated mentors always available to guide you"
+
+Card 3:
+Icon: ₹ / money
+Title: Regular Income
+Description:
+"Get paid every 3 days directly to your bank account"
+
+Card 4:
+Icon: growth chart
+Title: Growth Path
+Description:
+"Structured system from beginner to mastery level"
+
+Card 5:
+Icon: community/users
+Title: Strong Community
+Description:
+"2500+ members supporting each other daily"
+
+Card 6:
+Icon: mobile phone
+Title: Work Anywhere
+Description:
+"All you need is a smartphone to start earning"
+
+Use purple icons.
+
+Cards must have:
+- white background
+- rounded corners
+- subtle shadow
+- generous internal padding
+- centered icon/title
+- gray description text
+
+--------------------------------------------------
+SECTION 5 — YOUR SUCCESS JOURNEY
+--------------------------------------------------
+
+Light gray background.
+
+Heading:
+
+"Your Success Journey"
+
+Subtitle:
+
+"Our proven 3-step system takes you from beginner to financial freedom"
+
+Create 3 cards.
+
+CARD 01:
+Title:
+"Learn Basics"
+
+Description:
+"Master the fundamentals of online earning with our beginner-friendly modules"
+
+Checklist:
+✓ Basic digital skills training
+✓ Platform orientation
+✓ Simple initial tasks
+
+CARD 02:
+Title:
+"Build Skills"
+
+Description:
+"Enhance your capabilities with advanced digital marketing techniques"
+
+Checklist:
+✓ Content creation mastery
+✓ Social media strategies
+✓ Effective communication
+
+CARD 03:
+Title:
+"Earn More"
+
+Description:
+"Implement strategies to multiply your earnings exponentially"
+
+Checklist:
+✓ Automation tools training
+✓ Team building strategies
+✓ Multiple income streams
+
+Each card should show a very large, extremely light number:
+01
+02
+03
+
+Position number in the top-right area of card like screenshot.
+
+Checklist ticks should be green.
+
+On mobile:
+- Card 01 and 02 can appear in two columns if screen width allows.
+- Card 03 should follow naturally.
+- Maintain screenshot-like spacing.
+
+--------------------------------------------------
+SECTION 6 — LEARN MORE CTA
+--------------------------------------------------
+
+White background.
+
+Heading:
+
+"Want to Learn More About Our Community?"
+
+Description:
+
+"Discover how our members are achieving financial independence through digital skills"
+
+Centered link:
+
+"View Full Details →"
+
+Purple and underlined.
+
+--------------------------------------------------
+SECTION 7 — FINAL CTA
+--------------------------------------------------
+
+Large purple/blue gradient section similar to screenshot.
+
+Heading:
+
+"Ready to Transform Your Life?"
+
+Description:
+
+"Join thousands of members who are building sustainable online incomes with our proven system"
+
+White button:
+
+"Start Earning Today"
+
+Button should be centered with rounded corners and subtle shadow.
+
+--------------------------------------------------
+FOOTER
+--------------------------------------------------
+
+Dark navy background.
+
+Three-column desktop layout.
+
+Column 1:
+Earner Community
+
+"Empowering financial freedom through zero-investment online opportunities since 2023."
+
+Social media circular icons:
+Facebook
+Twitter/X
+Instagram
+LinkedIn
+YouTube
+
+Column 2:
+Quick Links
+
+Home
+Features
+Process
+About
+
+Column 3:
+Contact Info
+
+📍 Hyderabad, Telangana
+500005
+
+✉ support@earnercommunity.in
+
+Bottom divider.
+
+Copyright:
+
+"© 2025-2026 EC Fintech. All Rights Reserved."
+
+Add small scroll-to-top floating button at bottom-right like the screenshot.
+
+==================================================
+ABOUT PAGE
+==================================================
+
+IMPORTANT:
+The About page must use THE SAME navbar, typography, colors, card styling, spacing and footer as Home.
+
+URL/path:
+`about.html`
+
+If using only one HTML file, implement About page using JavaScript routing/query/hash while preserving the same design.
+
+--------------------------------------------------
+ABOUT HERO
+--------------------------------------------------
+
+Light lavender background.
+
+Centered heading:
+
+"About Earner Community"
+
+Subtitle:
+
+"Empowering financial freedom through zero-investment online opportunities"
+
+--------------------------------------------------
+OUR VISION
+--------------------------------------------------
+
+White card with subtle shadow.
+
+Purple vertical accent line on left.
+
+Heading:
+
+"Our Vision"
+
+Text:
+
+"Earner Community provides a simple way to earn online without any investment. We make it easy for beginners to start their financial journey."
+
+Second paragraph:
+
+"Our goal is to create a supportive community where members help each other grow and succeed together in online earning."
+
+Use purple highlighted "Earner Community".
+
+--------------------------------------------------
+COMMUNITY STRENGTH
+--------------------------------------------------
+
+Light lavender/blue section.
+
+Heading:
+
+"Community Strength"
+
+Four cards:
+
+4225+
+ACTIVE MEMBERS
+
+195+
+ACTIVE TEAM
+
+100+
+SUPPORT TEAM
+
+24/7
+SUPPORT SYSTEM
+
+Numbers should be large and purple.
+
+Cards white with rounded corners and shadows.
+
+--------------------------------------------------
+WHAT WE OFFER
+--------------------------------------------------
+
+White card.
+
+Purple left accent line.
+
+Heading:
+
+"What We Offer"
+
+Text blocks:
+
+"Free training sessions twice every week on digital skills that would normally cost thousands of rupees."
+
+"Beginner-friendly systems that become easier as you gain experience."
+
+"A supportive community environment to help you at every step."
+
+--------------------------------------------------
+WHAT OUR MEMBERS SAY
+--------------------------------------------------
+
+Light lavender background.
+
+Heading:
+
+"What Our Members Say"
+
+Create horizontally scrollable testimonial cards on mobile, matching screenshot.
+
+Use circular profile images.
+
+Example cards:
+
+Shadab Akhtar
+Student
+
+Alfiya
+Freelancer
+
+Imran
+Content Creator
+
+Each card:
+- profile image
+- name
+- role
+- testimonial text
+- five-star rating
+- "View Review →"
+
+Use placeholder images if the real images are unavailable:
+`assets/shadab.jpg`
+`assets/alfiya.jpg`
+`assets/imran.jpg`
+
+Do not stretch profile pictures.
+
+--------------------------------------------------
+WHY IT'S ZERO INVESTMENT
+--------------------------------------------------
+
+Light lavender/blue card section.
+
+Heading:
+
+"Why It's Zero Investment"
+
+Text:
+
+"Our platform operates on a completely zero-investment model because we believe financial opportunities should be accessible to everyone, regardless of their economic background."
+
+"We partner with top brands that offer free promotions and special offers. When our members engage with these brands through our platform, the brands pay us commission for the promotion and customer engagement."
+
+"This commission is then distributed among our members as earnings. We don't charge any fees or take any cuts from our members' earnings because our revenue comes directly from the brands we promote."
+
+Purple button:
+
+"Read More"
+
+--------------------------------------------------
+HOW IT WORKS
+--------------------------------------------------
+
+White card.
+
+Heading:
+
+"How It Works"
+
+Create four horizontal numbered rows:
+
+1  Join completely free – no hidden costs
+2  Learn from our free training
+3  Start with simple tasks
+4  Grow your earnings
+
+Number circles should be purple.
+
+Rows should have very light lavender backgrounds.
+
+--------------------------------------------------
+OUR FOUNDER
+--------------------------------------------------
+
+White card.
+
+Heading:
+
+"Our Founder"
+
+Use image:
+
+`assets/founder.jpg`
+
+Circular profile image with purple border.
+
+Name:
+
+"Athar Sadiq"
+
+Subtitle:
+
+"Founder & CEO, Earner Community"
+
+Description:
+
+"With a vision to empower individuals through digital opportunities, Athar founded Earner Community to provide accessible earning solutions for everyone."
+
+Add Instagram and email circular icons underneath.
+
+--------------------------------------------------
+ABOUT PAGE FOOTER
+--------------------------------------------------
+
+Use exactly the SAME footer as Home.
+
+Do not create a different footer design.
+
+==================================================
+RESPONSIVENESS
+==================================================
+
+This is extremely important.
+
+The screenshots were taken on a mobile Android browser.
+
+Optimize primarily for:
+- 360px
+- 375px
+- 390px
+- 412px
+- 430px
+
+Also make it responsive for tablet and desktop.
+
+Mobile requirements:
+- No horizontal page overflow.
+- No text cut off.
+- No cards going outside viewport.
+- Correct padding.
+- Headings should wrap naturally.
+- Buttons should remain usable.
+- Cards should have the same rounded/shadow appearance.
+- Test every section at 360px width.
+
+==================================================
+TYPOGRAPHY
+==================================================
+
+Use a modern rounded professional font similar to the screenshot.
+
+Prefer:
+`Poppins`, `Inter`, or a close Google Font.
+
+Use:
+- heavy/bold headings
+- medium navigation
+- gray body text
+- purple highlighted words
+
+Make typography visually close to screenshots.
+
+==================================================
+ICONS
+==================================================
+
+Use Font Awesome or another free icon library through CDN if needed.
+
+Icons should visually resemble:
+- check
+- graduation cap
+- support/hand
+- money
+- growth chart
+- users
+- mobile
+- location
+- email
+- social media
+- arrow
+
+Do not use huge emojis where an actual icon can be used.
+
+==================================================
+ANIMATIONS
+==================================================
+
+Keep animations subtle.
+
+Add:
+- button hover
+- card hover
+- smooth scrolling
+- section fade-in when entering viewport
+- slight transform on cards
+
+Do NOT make animations excessive.
+
+The screenshots have a clean professional appearance.
+
+==================================================
+FUNCTIONALITY
+==================================================
+
+Navbar:
+Home -> Home page
+About -> About page
+Login -> `login.html`
+Register -> `register.html`
+
+Buttons:
+Get Started -> `register.html`
+How It Works -> scroll to How It Works / About section
+View Full Details -> About page
+Start Earning Today -> `register.html`
+
+Certificate:
+Open `certificate.html` if available.
+
+Social links can use placeholder `#` if actual URLs are not provided.
+
+Add smooth scrolling.
+
+Add working scroll-to-top button.
+
+==================================================
+IMPORTANT IMAGE RULE
+==================================================
+
+Do not invent a completely different logo.
+
+Use:
+`assets/logo.png`
+
+Use:
+`assets/founder.jpg`
+
+Use:
+`assets/shadab.jpg`
+`assets/alfiya.jpg`
+`assets/imran.jpg`
+
+If any image is missing, keep the exact same container dimensions and use a temporary placeholder so the layout does not break.
+
+==================================================
+CODE QUALITY
+==================================================
+
+Return the COMPLETE working code.
+
+Do not give partial snippets.
+
+Do not say "continue from here".
+
+Do not omit CSS.
+
+Do not omit JavaScript.
+
+Do not leave TODO comments for important functionality.
+
+Make sure all HTML tags are correctly closed.
+
+Make sure the page works immediately.
+
+Use semantic HTML where possible.
+
+Use CSS variables for the main colors.
+
+Use responsive media queries.
+
+==================================================
+FINAL REQUIREMENT
+==================================================
+
+The final result should visually resemble the supplied screenshots as closely as possible.
+
+Priority order:
+
+1. Exact layout
+2. Exact section order
+3. Exact colors
+4. Exact spacing
+5. Exact card proportions
+6. Exact typography hierarchy
+7. Exact navbar
+8. Exact buttons
+9. Exact footer
+10. Responsive mobile appearance
+
+DO NOT redesign the website.
+DO NOT simplify it.
+DO NOT remove sections.
+DO NOT replace the mobile layout with a generic modern template.
+
+Build the complete Earner Community Home + About website based on the screenshots.
